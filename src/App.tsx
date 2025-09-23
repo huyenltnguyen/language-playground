@@ -1,8 +1,10 @@
 import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import About from './About';
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +21,21 @@ function App() {
           Learn React
         </a>
       </header>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <nav style={{ padding: '1rem', backgroundColor: '#f0f0f0' }}>
+        <Link to="/" style={{ marginRight: '1rem', color: '#61dafb' }}>Home</Link>
+        <Link to="/about" style={{ color: '#61dafb' }}>About</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </div>
   );
 }
