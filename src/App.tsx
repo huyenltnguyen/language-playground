@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import About from './About';
+import PinyinToneInput from './PinyinToneInput';
 
 function Home() {
   return (
@@ -30,11 +30,11 @@ function App() {
     <div>
       <nav style={{ padding: '1rem', backgroundColor: '#f0f0f0' }}>
         <Link to="/" style={{ marginRight: '1rem', color: '#61dafb' }}>Home</Link>
-        <Link to="/about" style={{ color: '#61dafb' }}>About</Link>
+        <Link to="/pinyin-tone-input" style={{ color: '#61dafb' }}>Pinyin Tone Input</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/pinyin-tone-input" element={<PinyinToneInput />} />
       </Routes>
     </div>
   );
