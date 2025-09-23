@@ -35,6 +35,9 @@ importers:
       '@types/react-router-dom':
         specifier: ^5.3.3
         version: 5.3.3
+      pinyin-tone:
+        specifier: ^2.3.5
+        version: 2.3.5
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -4011,6 +4014,9 @@ packages:
   pify@2.3.0:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
+
+  pinyin-tone@2.3.5:
+    resolution: {integrity: sha512-vlpl7V4T1MhwfDvxDxOW2fzpJTG681idHr5JsZecSEqeiT/pcpLua3is/qhXqiWf5cddbE7S81/4rwAqCMQr0Q==}
 
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
@@ -10491,6 +10497,8 @@ snapshots:
   picomatch@4.0.3: {}
 
   pify@2.3.0: {}
+
+  pinyin-tone@2.3.5: {}
 
   pirates@4.0.7: {}
 

@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import About from './About';
+import PinyinToneInput from './PinyinToneInput';
 
-test('renders about page content', () => {
-  render(<About />);
-  const aboutHeading = screen.getByRole('heading', { name: /about/i });
-  expect(aboutHeading).toBeInTheDocument();
+test('renders pinyin tone input page content', () => {
+  render(<PinyinToneInput />);
+  const heading = screen.getByRole('heading', { name: /pinyin tone input/i });
+  expect(heading).toBeInTheDocument();
 });
 
 // Test basic components without router
-test('about page has descriptive text', () => {
-  render(<About />);
-  const description = screen.getByText(/language playground application/i);
-  expect(description).toBeInTheDocument();
+test('pinyin tone input page has input field', () => {
+  render(<PinyinToneInput />);
+  const input = screen.getByPlaceholderText(/type pinyin with numbers/i);
+  expect(input).toBeInTheDocument();
 });
