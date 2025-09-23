@@ -13,8 +13,8 @@ This app is automatically deployed to GitHub Pages via GitHub Actions when chang
 To run the app locally:
 
 ```bash
-npm install
-npm start
+pnpm install
+pnpm start
 ```
 
 The app will open at http://localhost:3001.
@@ -24,7 +24,7 @@ The app will open at http://localhost:3001.
 To create a production build:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 The build artifacts will be stored in the `build/` directory.
