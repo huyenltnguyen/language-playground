@@ -45,9 +45,45 @@
   padding: 2rem;
 }
 
-.inputContainer {
+.exerciseContainer {
   margin: 2rem 0;
 }
+
+.exerciseText {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #f3f3f3;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.blankInput {
+  display: inline-flex !important;
+  width: 150px !important;
+}
+
+.blankInput .MuiInput-root {
+  border-bottom: 2px solid #61dafb !important;
+  background: transparent !important;
+}
+
+.blankInput .MuiInput-root:before {
+  border-bottom: none !important;
+}
+
+.blankInput .MuiInput-root:after {
+  border-bottom: 2px solid #90caf9 !important;
+}
+
+.blankInput .MuiInputBase-input {
+  color: #f3f3f3 !important;
+  font-size: 1.2rem !important;
+  text-align: center;
+  padding: 0.25rem 0.5rem !important;
+}
+
 
 .result {
   font-size: 1.3rem;

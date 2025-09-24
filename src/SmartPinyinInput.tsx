@@ -34,6 +34,7 @@ function SmartPinyinInput() {
   const [inputValue, setInputValue] = useState("");
   const [selectedCharacter, setSelectedCharacter] =
     useState<CharacterOption | null>(null);
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   const characterOptions = useMemo(() => {
     const normalizedInput = inputValue.toLowerCase().trim();
@@ -62,56 +63,67 @@ function SmartPinyinInput() {
         <p>
           Type pinyin with tone numbers to see corresponding Chinese characters.
         </p>
-        <div className={styles.inputContainer}>
-          <Autocomplete
-            options={optionsWithSelected}
-            value={selectedCharacter}
-            onChange={(event, newValue) => {
-              setSelectedCharacter(newValue);
-            }}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-              setSelectedCharacter(null);
-            }}
-            getOptionLabel={(option) =>
-              option ? `${option.character} (${option.pinyin})` : ""
-            }
-            isOptionEqualToValue={(option, value) =>
-              option?.character === value?.character &&
-              option?.pinyin === value?.pinyin
-            }
-            filterOptions={(options) => options}
-            noOptionsText="No characters found for this pinyin"
-            renderOption={(props, option) => {
-              // Merge our custom class with MUI's classes on the root <li>
-              return (
-                <li
-                  {...props}
-                  className={styles.option + " " + (props.className || "")}
-                >
-                  <span className={styles.character}>{option.character}</span>
-                  <span className={styles.pinyin}>{option.pinyin}</span>
-                </li>
-              );
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder="Type pinyin (e.g., ma3, mǎ, li3, lǐ)"
-                variant="outlined"
-                fullWidth
-              />
-            )}
-            classes={{
-              listbox: styles.listbox,
-              paper: styles.paper,
-              noOptions: styles.noOptions,
-            }}
-            sx={{ maxWidth: 400 }}
-            autoHighlight
-            openOnFocus
-          />
+        <div className={styles.exerciseContainer}>
+          <div
+            className={styles.exerciseText}
+            role="group"
+            aria-labelledby="exercise-instruction"
+          >
+            <span id="exercise-instruction">Type the pinyin</span>{" "}
+            <Autocomplete
+              options={optionsWithSelected}
+              value={selectedCharacter || undefined}
+              onChange={(event, newValue) => {
+                setSelectedCharacter(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+                setSelectedCharacter(null);
+              }}
+              getOptionLabel={(option) =>
+                option ? `${option.character} (${option.pinyin})` : ""
+              }
+              isOptionEqualToValue={(option, value) =>
+                option?.character === value?.character &&
+                option?.pinyin === value?.pinyin
+              }
+              filterOptions={(options) => options}
+              open={isInputFocused && optionsWithSelected.length > 0}
+              popupIcon={null}
+              renderOption={(props, option) => {
+                // Merge our custom class with MUI's classes on the root <li>
+                return (
+                  <li
+                    {...props}
+                    className={styles.option + " " + (props.className || "")}
+                  >
+                    <span className={styles.character}>{option.character}</span>
+                    <span className={styles.pinyin}>{option.pinyin}</span>
+                  </li>
+                );
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  placeholder="ma3 or mǎ"
+                  variant="standard"
+                  className={styles.blankInput}
+                  aria-label="Enter pinyin to find Chinese characters"
+                  onFocus={() => setIsInputFocused(true)}
+                  onBlur={() => setIsInputFocused(false)}
+                />
+              )}
+              classes={{
+                listbox: styles.listbox,
+                paper: styles.paper,
+              }}
+              disableClearable
+              autoHighlight
+              openOnFocus
+            />{" "}
+            <span>to see the corresponding Chinese character.</span>
+          </div>
         </div>
         {selectedCharacter && (
           <p className={styles.result}>
