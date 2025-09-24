@@ -83,20 +83,3 @@
   text-align: center;
   padding: 0.25rem 0.5rem !important;
 }
-
-
-.result {
-  font-size: 1.3rem;
-  color: #61dafb;
-  font-weight: bold;
-  margin: 1.5rem 0;
-  padding: 1rem;
-  background: rgba(97, 218, 251, 0.1);
-  border-radius: 4px;
-  border-left: 4px solid #61dafb;
-}
-
-.example {
-  color: #61dafb;
-  font-size: 0.9rem;
-}
