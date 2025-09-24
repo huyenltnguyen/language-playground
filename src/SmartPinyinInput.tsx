@@ -11,7 +11,17 @@ const pinyinCharacterMap: Record<string, CharacterOption[]> = {
     { character: "马", pinyin: "mǎ" },
     { character: "码", pinyin: "mǎ" },
   ],
+  mǎ: [
+    { character: "马", pinyin: "mǎ" },
+    { character: "码", pinyin: "mǎ" },
+  ],
   li3: [
+    { character: "里", pinyin: "lǐ" },
+    { character: "李", pinyin: "lǐ" },
+    { character: "理", pinyin: "lǐ" },
+    { character: "礼", pinyin: "lǐ" },
+  ],
+  lǐ: [
     { character: "里", pinyin: "lǐ" },
     { character: "李", pinyin: "lǐ" },
     { character: "理", pinyin: "lǐ" },
@@ -21,7 +31,8 @@ const pinyinCharacterMap: Record<string, CharacterOption[]> = {
 
 function SmartPinyinInput() {
   const [inputValue, setInputValue] = useState("");
-  const [selectedCharacter, setSelectedCharacter] = useState<CharacterOption | null>(null);
+  const [selectedCharacter, setSelectedCharacter] =
+    useState<CharacterOption | null>(null);
 
   const characterOptions = useMemo(() => {
     const normalizedInput = inputValue.toLowerCase().trim();
@@ -54,7 +65,7 @@ function SmartPinyinInput() {
             type="text"
             value={inputValue}
             onChange={handleInputChange}
-            placeholder="Type pinyin with numbers (e.g., ma3, li3)"
+            placeholder="Type pinyin (e.g., ma3, mǎ, li3, lǐ)"
             className={styles.input}
             aria-label="Enter pinyin with numbers"
           />
@@ -83,11 +94,13 @@ function SmartPinyinInput() {
         )}
         {selectedCharacter && (
           <p className={styles.result}>
-            Selected word: {selectedCharacter.character} ({selectedCharacter.pinyin})
+            Selected word: {selectedCharacter.character} (
+            {selectedCharacter.pinyin})
           </p>
         )}
         <p className={styles.example}>
-          Example: Type "ma3" to see options for 马, 码 or "li3" for 里, 李, 理, 礼
+          Example: Type "ma3" or "mǎ" to see options for 马, 码 or "li3"/"lǐ"
+          for 里, 李, 理, 礼
         </p>
       </header>
     </div>
