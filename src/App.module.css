@@ -1,3 +1,7 @@
+.container {
+  padding: 2rem;
+}
+
 .nav {
   padding: 1rem;
   background-color: #f0f0f0;

@@ -12,12 +12,12 @@ function PinyinToneInput() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className={styles.container}>
+      <header>
         <h1>Pinyin Tone Input</h1>
         <p>
           Type alphanumeric letters and see them converted to Pinyin with
-          diacritical marks!
+          diacritical marks.
         </p>
         <div className={styles.inputContainer}>
           <input
