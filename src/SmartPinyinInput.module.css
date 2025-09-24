@@ -1,46 +1,52 @@
+.listbox {
+  background: #23272a;
+  color: #f3f3f3;
+  font-size: 1.1rem;
+}
+
+.paper {
+  background: #23272a;
+  color: #f3f3f3;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.noOptions {
+  color: #bbb;
+  background: #23272a;
+  padding: 0.75rem 1rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.option[aria-selected="true"],
+.option:hover,
+.option.Mui-focused {
+  background: #2d3741;
+  color: #61dafb;
+}
+
+.character {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.pinyin {
+  font-size: 1rem;
+  color: #90caf9;
+}
 .container {
   padding: 2rem;
 }
 
 .inputContainer {
   margin: 2rem 0;
-}
-
-.input {
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  width: 400px;
-  max-width: 80vw;
-  border: 2px solid #61dafb;
-  border-radius: 4px;
-  outline: none;
-}
-
-.comboboxContainer {
-  margin: 1.5rem 0;
-}
-
-.label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #f3f3f3;
-  font-weight: 500;
-}
-
-.combobox {
-  padding: 0.5rem;
-  font-size: 1.1rem;
-  width: 200px;
-  border: 2px solid #61dafb;
-  border-radius: 4px;
-  outline: none;
-  background: #181a1b;
-  color: #f3f3f3;
-}
-
-.combobox option {
-  background: #181a1b;
-  color: #f3f3f3;
 }
 
 .result {

@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { Autocomplete, TextField } from "@mui/material";
 import styles from "./SmartPinyinInput.module.css";
 
 interface CharacterOption {
@@ -39,19 +40,20 @@ function SmartPinyinInput() {
     return pinyinCharacterMap[normalizedInput] || [];
   }, [inputValue]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-    setSelectedCharacter(null);
-  };
-
-  const handleOptionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedIndex = parseInt(event.target.value, 10);
-    if (selectedIndex >= 0 && selectedIndex < characterOptions.length) {
-      setSelectedCharacter(characterOptions[selectedIndex]);
-    } else {
-      setSelectedCharacter(null);
+  // For Autocomplete, keep selected value in options if not present
+  const optionsWithSelected = useMemo(() => {
+    if (
+      selectedCharacter &&
+      !characterOptions.some(
+        (opt) =>
+          opt.character === selectedCharacter.character &&
+          opt.pinyin === selectedCharacter.pinyin
+      )
+    ) {
+      return [selectedCharacter, ...characterOptions];
     }
-  };
+    return characterOptions;
+  }, [characterOptions, selectedCharacter]);
 
   return (
     <div className={styles.container}>
@@ -61,37 +63,56 @@ function SmartPinyinInput() {
           Type pinyin with tone numbers to see corresponding Chinese characters.
         </p>
         <div className={styles.inputContainer}>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Type pinyin (e.g., ma3, mǎ, li3, lǐ)"
-            className={styles.input}
-            aria-label="Enter pinyin with numbers"
+          <Autocomplete
+            options={optionsWithSelected}
+            value={selectedCharacter}
+            onChange={(event, newValue) => {
+              setSelectedCharacter(newValue);
+            }}
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
+              setSelectedCharacter(null);
+            }}
+            getOptionLabel={(option) =>
+              option ? `${option.character} (${option.pinyin})` : ""
+            }
+            isOptionEqualToValue={(option, value) =>
+              option?.character === value?.character &&
+              option?.pinyin === value?.pinyin
+            }
+            filterOptions={(options) => options}
+            noOptionsText="No characters found for this pinyin"
+            renderOption={(props, option) => {
+              // Merge our custom class with MUI's classes on the root <li>
+              return (
+                <li
+                  {...props}
+                  className={styles.option + " " + (props.className || "")}
+                >
+                  <span className={styles.character}>{option.character}</span>
+                  <span className={styles.pinyin}>{option.pinyin}</span>
+                </li>
+              );
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                placeholder="Type pinyin (e.g., ma3, mǎ, li3, lǐ)"
+                variant="outlined"
+                fullWidth
+              />
+            )}
+            classes={{
+              listbox: styles.listbox,
+              paper: styles.paper,
+              noOptions: styles.noOptions,
+            }}
+            sx={{ maxWidth: 400 }}
+            autoHighlight
+            openOnFocus
           />
         </div>
-        {characterOptions.length > 0 && (
-          <div className={styles.comboboxContainer}>
-            <label htmlFor="character-select" className={styles.label}>
-              Select a character:
-            </label>
-            <select
-              id="character-select"
-              onChange={handleOptionSelect}
-              className={styles.combobox}
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Choose a character...
-              </option>
-              {characterOptions.map((option, index) => (
-                <option key={index} value={index}>
-                  {option.character}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
         {selectedCharacter && (
           <p className={styles.result}>
             Selected word: {selectedCharacter.character} (
