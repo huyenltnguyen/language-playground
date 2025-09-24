@@ -9,6 +9,9 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
+const isGithubPages = window.location.hostname === "huyenltnguyen.github.io";
+const basename = isGithubPages ? "/language-playground" : "";
+
 const theme = createTheme({
   palette: {
     mode: "dark",
@@ -32,7 +35,7 @@ const theme = createTheme({
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter basename={"/language-playground"}>
+      <BrowserRouter basename={basename}>
         <App />
       </BrowserRouter>
     </ThemeProvider>
