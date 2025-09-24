@@ -3,8 +3,12 @@
 }
 
 .nav {
-  padding: 1rem;
-  background-color: #f0f0f0;
+  background: #23272e;
+  padding: 1rem 2vw;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #222;
+  display: flex;
+  gap: 1.5rem;
 }
 
 .link {
