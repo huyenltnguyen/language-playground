@@ -9,9 +9,6 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const basename =
-  process.env.NODE_ENV === "production" ? "/language-playground" : "";
-
 const theme = createTheme({
   palette: {
     mode: "dark",
@@ -35,7 +32,7 @@ const theme = createTheme({
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter basename={basename}>
+      <BrowserRouter basename={"/language-playground"}>
         <App />
       </BrowserRouter>
     </ThemeProvider>
