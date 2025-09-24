@@ -25,7 +25,7 @@ function App() {
         </Link>
       </nav>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/pinyin-tone-input" element={<PinyinToneInput />} />
       </Routes>
     </div>
