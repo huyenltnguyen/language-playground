@@ -9,8 +9,17 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
+// Robust SPA fallback for GitHub Pages: handle ?redirect= from 404.html
 const isGithubPages = window.location.hostname === "huyenltnguyen.github.io";
 const basename = isGithubPages ? "/language-playground" : "";
+
+// If redirected from 404.html, restore the intended path before React Router mounts
+const params = new URLSearchParams(window.location.search);
+const redirect = params.get("redirect");
+if (redirect) {
+  const newUrl = basename + redirect;
+  window.history.replaceState(null, "", newUrl);
+}
 
 const theme = createTheme({
   palette: {
