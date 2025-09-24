@@ -1,7 +1,5 @@
 # language-playground
 
-A React-based language learning playground application.
-
 ## Deployment
 
 This app is automatically deployed to GitHub Pages via GitHub Actions when changes are pushed to the `main` branch.
