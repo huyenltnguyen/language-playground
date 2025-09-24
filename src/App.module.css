@@ -1,0 +1,18 @@
+.container {
+  padding: 2rem;
+}
+
+.nav {
+  padding: 1rem;
+  background-color: #f0f0f0;
+}
+
+.link {
+  color: #61dafb;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.link:last-child {
+  margin-right: 0;
+}
