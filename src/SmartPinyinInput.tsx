@@ -16,18 +16,6 @@ const pinyinCharacterMap: Record<string, CharacterOption[]> = {
     { character: "马", pinyin: "mǎ" },
     { character: "码", pinyin: "mǎ" },
   ],
-  li3: [
-    { character: "里", pinyin: "lǐ" },
-    { character: "李", pinyin: "lǐ" },
-    { character: "理", pinyin: "lǐ" },
-    { character: "礼", pinyin: "lǐ" },
-  ],
-  lǐ: [
-    { character: "里", pinyin: "lǐ" },
-    { character: "李", pinyin: "lǐ" },
-    { character: "理", pinyin: "lǐ" },
-    { character: "礼", pinyin: "lǐ" },
-  ],
 };
 
 function SmartPinyinInput() {
@@ -60,26 +48,32 @@ function SmartPinyinInput() {
     <div className={styles.container}>
       <header>
         <h1>Smart Pinyin Input</h1>
-        <p>
-          Type pinyin with tone numbers to see corresponding Chinese characters.
-        </p>
         <div className={styles.exerciseContainer}>
           <div
             className={styles.exerciseText}
             role="group"
             aria-labelledby="exercise-instruction"
           >
-            <span id="exercise-instruction">Type the pinyin</span>{" "}
+            <span id="exercise-instruction">
+              Type the Pinyin to see the corresponding Chinese character:
+            </span>{" "}
             <Autocomplete
               options={optionsWithSelected}
-              value={selectedCharacter || undefined}
+              value={
+                (inputValue.trim() === "" ? null : selectedCharacter) as
+                  | CharacterOption
+                  | undefined
+              }
               onChange={(event, newValue) => {
                 setSelectedCharacter(newValue);
+                setIsInputFocused(false); // Close dropdown on select
               }}
               inputValue={inputValue}
               onInputChange={(event, newInputValue) => {
                 setInputValue(newInputValue);
-                setSelectedCharacter(null);
+                if (newInputValue.trim() === "") {
+                  setSelectedCharacter(null);
+                }
               }}
               getOptionLabel={(option) =>
                 option ? `${option.character} (${option.pinyin})` : ""
@@ -110,6 +104,12 @@ function SmartPinyinInput() {
                   variant="standard"
                   className={styles.blankInput}
                   aria-label="Enter pinyin to find Chinese characters"
+                  sx={{
+                    "& .MuiInput-input": {
+                      paddingLeft: "16px !important",
+                      paddingRight: "16px !important",
+                    },
+                  }}
                   onFocus={() => setIsInputFocused(true)}
                   onBlur={() => setIsInputFocused(false)}
                 />
@@ -121,20 +121,9 @@ function SmartPinyinInput() {
               disableClearable
               autoHighlight
               openOnFocus
-            />{" "}
-            <span>to see the corresponding Chinese character.</span>
+            />
           </div>
         </div>
-        {selectedCharacter && (
-          <p className={styles.result}>
-            Selected word: {selectedCharacter.character} (
-            {selectedCharacter.pinyin})
-          </p>
-        )}
-        <p className={styles.example}>
-          Example: Type "ma3" or "mǎ" to see options for 马, 码 or "li3"/"lǐ"
-          for 里, 李, 理, 礼
-        </p>
       </header>
     </div>
   );
