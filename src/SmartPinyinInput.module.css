@@ -1,0 +1,102 @@
+.listbox {
+  background: #23272a;
+  color: #f3f3f3;
+  font-size: 1.1rem;
+}
+
+.paper {
+  background: #23272a;
+  color: #f3f3f3;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.noOptions {
+  color: #bbb;
+  background: #23272a;
+  padding: 0.75rem 1rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.option[aria-selected="true"],
+.option:hover,
+.option.Mui-focused {
+  background: #2d3741;
+  color: #61dafb;
+}
+
+.character {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.pinyin {
+  font-size: 1rem;
+  color: #90caf9;
+}
+.container {
+  padding: 2rem;
+}
+
+.exerciseContainer {
+  margin: 2rem 0;
+}
+
+.exerciseText {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #f3f3f3;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.blankInput {
+  display: inline-flex !important;
+  width: 150px !important;
+}
+
+.blankInput .MuiInput-root {
+  border-bottom: 2px solid #61dafb !important;
+  background: transparent !important;
+}
+
+.blankInput .MuiInput-root:before {
+  border-bottom: none !important;
+}
+
+.blankInput .MuiInput-root:after {
+  border-bottom: 2px solid #90caf9 !important;
+}
+
+.blankInput .MuiInputBase-input {
+  color: #f3f3f3 !important;
+  font-size: 1.2rem !important;
+  text-align: center;
+  padding: 0.25rem 0.5rem !important;
+}
+
+
+.result {
+  font-size: 1.3rem;
+  color: #61dafb;
+  font-weight: bold;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(97, 218, 251, 0.1);
+  border-radius: 4px;
+  border-left: 4px solid #61dafb;
+}
+
+.example {
+  color: #61dafb;
+  font-size: 0.9rem;
+}
