@@ -7,9 +7,13 @@ import "./index.css";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const basename =
+  process.env.NODE_ENV === "production" ? "/language-playground" : "";
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/language-playground">
+    <BrowserRouter basename={basename}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
