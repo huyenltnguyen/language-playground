@@ -1,0 +1,60 @@
+.container {
+  padding: 2rem;
+}
+
+.inputContainer {
+  margin: 2rem 0;
+}
+
+.input {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  width: 400px;
+  max-width: 80vw;
+  border: 2px solid #61dafb;
+  border-radius: 4px;
+  outline: none;
+}
+
+.comboboxContainer {
+  margin: 1.5rem 0;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #f3f3f3;
+  font-weight: 500;
+}
+
+.combobox {
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  width: 200px;
+  border: 2px solid #61dafb;
+  border-radius: 4px;
+  outline: none;
+  background: #181a1b;
+  color: #f3f3f3;
+}
+
+.combobox option {
+  background: #181a1b;
+  color: #f3f3f3;
+}
+
+.result {
+  font-size: 1.3rem;
+  color: #61dafb;
+  font-weight: bold;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(97, 218, 251, 0.1);
+  border-radius: 4px;
+  border-left: 4px solid #61dafb;
+}
+
+.example {
+  color: #61dafb;
+  font-size: 0.9rem;
+}

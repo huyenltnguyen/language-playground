@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import styles from "./App.module.css";
 import PinyinToneInput from "./PinyinToneInput";
+import SmartPinyinInput from "./SmartPinyinInput";
 
 function Home() {
   return (
@@ -10,6 +11,9 @@ function Home() {
       <ul>
         <li>
           <Link to="/pinyin-tone-input">Pinyin Tone Input</Link>
+        </li>
+        <li>
+          <Link to="/smart-pinyin-input">Smart Pinyin Input</Link>
         </li>
       </ul>
     </main>
@@ -27,6 +31,7 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/pinyin-tone-input" element={<PinyinToneInput />} />
+        <Route path="/smart-pinyin-input" element={<SmartPinyinInput />} />
       </Routes>
     </div>
   );
