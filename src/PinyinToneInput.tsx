@@ -26,6 +26,7 @@ function PinyinToneInput() {
             onChange={handleInputChange}
             placeholder="Type pinyin with numbers (e.g., ni3 hao3)"
             className={styles.input}
+            aria-label="Enter pinyin with numbers"
           />
         </div>
         <p className={styles.example}>
