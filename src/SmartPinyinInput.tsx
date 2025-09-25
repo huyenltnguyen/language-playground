@@ -76,7 +76,7 @@ function SmartPinyinInput() {
                 }
               }}
               getOptionLabel={(option) =>
-                option ? `${option.character} (${option.pinyin})` : ""
+                option ? option.character : ""
               }
               isOptionEqualToValue={(option, value) =>
                 option?.character === value?.character &&
