@@ -75,9 +75,7 @@ function SmartPinyinInput() {
                   setSelectedCharacter(null);
                 }
               }}
-              getOptionLabel={(option) =>
-                option ? option.character : ""
-              }
+              getOptionLabel={(option) => (option ? option.character : "")}
               isOptionEqualToValue={(option, value) =>
                 option?.character === value?.character &&
                 option?.pinyin === value?.pinyin
@@ -93,7 +91,6 @@ function SmartPinyinInput() {
                     className={styles.option + " " + (props.className || "")}
                   >
                     <span className={styles.character}>{option.character}</span>
-                    <span className={styles.pinyin}>{option.pinyin}</span>
                   </li>
                 );
               }}
