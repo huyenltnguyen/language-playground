@@ -91,7 +91,6 @@ Single words: \`你 (nǐ)\` \`好 (hǎo)\`.`
           <TextField
             multiline
             fullWidth
-            rows={12}
             value={markdown}
             onChange={(e) => setMarkdown(e.target.value)}
             variant="outlined"
@@ -107,7 +106,7 @@ Single words: \`你 (nǐ)\` \`好 (hǎo)\`.`
 
         <Box className={styles.outputSection}>
           <Typography variant="h6" component="h2" gutterBottom>
-            HTML Output
+            Preview
           </Typography>
           <Paper
             className={styles.preview}
@@ -122,6 +121,22 @@ Single words: \`你 (nǐ)\` \`好 (hǎo)\`.`
               aria-live="polite"
               aria-label="Rendered HTML output"
             />
+          </Paper>
+        </Box>
+
+        <Box className={styles.htmlSection}>
+          <Typography variant="h6" component="h2" gutterBottom>
+            HTML Output
+          </Typography>
+          <Paper
+            className={styles.htmlCode}
+            variant="outlined"
+            component="section"
+            aria-label="HTML code output"
+          >
+            <pre className={styles.htmlCodeContent}>
+              <code>{htmlOutput}</code>
+            </pre>
           </Paper>
         </Box>
       </Box>
