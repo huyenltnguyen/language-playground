@@ -37,8 +37,7 @@ Single words: \`你 (nǐ)\` \`好 (hǎo)\`.`
 
             // Verify that the first part contains Chinese characters
             if (chineseCharPattern.test(chinese)) {
-              // Return a ruby element wrapped in a span for styling
-              return `<span class="${styles.rubyWrapper}"><ruby>${chinese}<rt>${pinyin}</rt></ruby></span>`;
+              return `<span class="${styles.rubyWrapper}"><ruby>${chinese}<rp>(</rp><rt>${pinyin}</rt><rp>)</rp></ruby></span>`;
             }
           }
 
