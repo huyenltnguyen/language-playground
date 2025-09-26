@@ -14,12 +14,9 @@ a {
   text-decoration: underline;
 }
 
-a:visited {
-  color: #b388ff;
-}
-
-a:hover, a:focus {
+a:hover, a:focus, a:visited {
   color: #21a1c4;
+  text-decoration: none;
 }
 
 code {

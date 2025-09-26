@@ -3,6 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import styles from "./App.module.css";
 import PinyinToneInput from "./PinyinToneInput";
 import SmartPinyinInput from "./SmartPinyinInput";
+import MarkdownToRuby from "./MarkdownToRuby";
 
 function Home() {
   return (
@@ -14,6 +15,9 @@ function Home() {
         </li>
         <li>
           <Link to="/smart-pinyin-input">Smart Pinyin Input</Link>
+        </li>
+        <li>
+          <Link to="/markdown-to-ruby">Markdown to Ruby</Link>
         </li>
       </ul>
     </main>
@@ -32,6 +36,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/pinyin-tone-input" element={<PinyinToneInput />} />
         <Route path="/smart-pinyin-input" element={<SmartPinyinInput />} />
+        <Route path="/markdown-to-ruby" element={<MarkdownToRuby />} />
       </Routes>
     </div>
   );

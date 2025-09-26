@@ -16,6 +16,7 @@
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@types/react-router-dom": "^5.3.3",
+    "marked": "^16.3.0",
     "pinyin-tone": "^2.3.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -46,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/marked": "^6.0.0"
   }
 }
