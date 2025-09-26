@@ -13,7 +13,7 @@ function MarkdownToRuby() {
 
 Try typing some markdown with Chinese and Pinyin:
 
-Regular text with \`你好 (nǐ hǎo)\` - this should become a ruby element.
+Chinese characters with Pinyin \`你好 (nǐ hǎo)\` - this should become a ruby element.
 
 Just Chinese: \`你好\` - this stays as regular text.
 
