@@ -15,10 +15,7 @@ type Segment = {
 
 export function ChineseFillInTheBlank() {
   const [markdown, setMarkdown] = useState(
-    `# Fill in the Blank Exercise
-
-Try creating fill-in-the-blank exercises:
-
+    `
 \`BLANK BLANK，王先生。(nǐ hǎo wáng xiān shēng)\`
 
 \`BLANK BLANK，王先生。(BLANK BLANK wáng xiān shēng)\`
@@ -203,7 +200,7 @@ Try creating fill-in-the-blank exercises:
     <div className={styles.container}>
       <header className={styles.header}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Fill in the Blank
+          Chinese Fill in the Blank
         </Typography>
       </header>
 
