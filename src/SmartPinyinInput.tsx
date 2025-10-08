@@ -18,7 +18,7 @@ const pinyinCharacterMap: Record<string, CharacterOption[]> = {
   ],
 };
 
-function SmartPinyinInput() {
+export function SmartPinyinInput() {
   const [inputValue, setInputValue] = useState("");
   const [selectedCharacter, setSelectedCharacter] =
     useState<CharacterOption | null>(null);
@@ -125,5 +125,3 @@ function SmartPinyinInput() {
     </div>
   );
 }
-
-export default SmartPinyinInput;

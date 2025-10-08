@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import toPinyinTones from "pinyin-tone";
 import styles from "./PinyinToneInput.module.css";
 
-function PinyinToneInput() {
+export function PinyinToneInput() {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,5 +36,3 @@ function PinyinToneInput() {
     </div>
   );
 }
-
-export default PinyinToneInput;
