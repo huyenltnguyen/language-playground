@@ -4,6 +4,7 @@ import styles from "./App.module.css";
 import PinyinToneInput from "./PinyinToneInput";
 import SmartPinyinInput from "./SmartPinyinInput";
 import MarkdownToRuby from "./MarkdownToRuby";
+import FillInTheBlank from "./FillInTheBlank";
 
 function Home() {
   return (
@@ -18,6 +19,9 @@ function Home() {
         </li>
         <li>
           <Link to="/markdown-to-ruby">Markdown to Ruby</Link>
+        </li>
+        <li>
+          <Link to="/fill-in-the-blank">Fill in the Blank</Link>
         </li>
       </ul>
     </main>
@@ -37,6 +41,7 @@ function App() {
         <Route path="/pinyin-tone-input" element={<PinyinToneInput />} />
         <Route path="/smart-pinyin-input" element={<SmartPinyinInput />} />
         <Route path="/markdown-to-ruby" element={<MarkdownToRuby />} />
+        <Route path="/fill-in-the-blank" element={<FillInTheBlank />} />
       </Routes>
     </div>
   );
