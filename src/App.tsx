@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import styles from "./App.module.css";
-import PinyinToneInput from "./PinyinToneInput";
-import SmartPinyinInput from "./SmartPinyinInput";
-import MarkdownToRuby from "./MarkdownToRuby";
-import FillInTheBlank from "./FillInTheBlank";
+import { PinyinToneInput } from "./PinyinToneInput";
+import { SmartPinyinInput } from "./SmartPinyinInput";
+import { MarkdownToRuby } from "./MarkdownToRuby";
+import { ChineseFillInTheBlank } from "./ChineseFillInTheBlank";
 
 function Home() {
   return (
@@ -21,7 +21,7 @@ function Home() {
           <Link to="/markdown-to-ruby">Markdown to Ruby</Link>
         </li>
         <li>
-          <Link to="/fill-in-the-blank">Fill in the Blank</Link>
+          <Link to="/chinese-fill-in-the-blank">Chinese Fill in the Blank</Link>
         </li>
       </ul>
     </main>
@@ -41,7 +41,10 @@ function App() {
         <Route path="/pinyin-tone-input" element={<PinyinToneInput />} />
         <Route path="/smart-pinyin-input" element={<SmartPinyinInput />} />
         <Route path="/markdown-to-ruby" element={<MarkdownToRuby />} />
-        <Route path="/fill-in-the-blank" element={<FillInTheBlank />} />
+        <Route
+          path="/chinese-fill-in-the-blank"
+          element={<ChineseFillInTheBlank />}
+        />
       </Routes>
     </div>
   );

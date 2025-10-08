@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Box, TextField, Typography, Paper } from "@mui/material";
-import styles from "./FillInTheBlank.module.css";
+import styles from "./ChineseFillInTheBlank.module.css";
 
 // Pattern to match Chinese characters
 const chineseCharPattern = /[\u4e00-\u9fff]/;
@@ -13,7 +13,7 @@ type Segment = {
   id?: number;
 };
 
-function FillInTheBlank() {
+export function ChineseFillInTheBlank() {
   const [markdown, setMarkdown] = useState(
     `# Fill in the Blank Exercise
 
@@ -368,5 +368,3 @@ Try creating fill-in-the-blank exercises:
     </div>
   );
 }
-
-export default FillInTheBlank;

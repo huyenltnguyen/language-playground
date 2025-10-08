@@ -7,7 +7,7 @@ import styles from "./MarkdownToRuby.module.css";
 const chinesePinyinPattern = /^([^\s()]+)\s*\(([^)]+)\)$/;
 const chineseCharPattern = /[\u4e00-\u9fff]/;
 
-function MarkdownToRuby() {
+export function MarkdownToRuby() {
   const [markdown, setMarkdown] = useState(
     `# Markdown to Ruby Demo
 
@@ -142,5 +142,3 @@ Single words: \`你 (nǐ)\` \`好 (hǎo)\`.`
     </div>
   );
 }
-
-export default MarkdownToRuby;
