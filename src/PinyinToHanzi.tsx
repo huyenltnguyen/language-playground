@@ -359,7 +359,6 @@ export function PinyinToHanzi() {
                   <Typography
                     variant="body2"
                     component="p"
-                    color="text.secondary"
                     className={styles.sectionText}
                   >
                     {parsed.instructions}
@@ -451,7 +450,6 @@ export function PinyinToHanzi() {
                   <Typography
                     variant="body2"
                     component="p"
-                    color="text.secondary"
                     className={styles.sectionText}
                   >
                     {parsed.instructions}
