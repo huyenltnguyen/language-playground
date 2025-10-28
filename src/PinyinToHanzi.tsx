@@ -11,7 +11,6 @@ type ParsedBlank = {
 };
 
 type ParsedMarkdown = {
-  title: string;
   description: string;
   instructions: string;
   sentence: string;
@@ -116,15 +115,6 @@ const convertPinyinToHanziFullMatch = (input: string, blank: ParsedBlank) => {
   return toned;
 };
 
-const extractFrontMatterValue = (markdown: string, key: string) => {
-  const frontMatterMatch = markdown.match(/^---([\s\S]*?)---/);
-  if (!frontMatterMatch) return "";
-
-  const regex = new RegExp(`^${key}:\\s*(.+)$`, "m");
-  const match = frontMatterMatch[1].match(regex);
-  return match ? match[1].trim() : "";
-};
-
 const extractSection = (
   markdown: string,
   startMarker: string,
@@ -155,8 +145,6 @@ const extractCodeBlocks = (input: string) => {
 };
 
 const parseMarkdown = (markdown: string): ParsedMarkdown => {
-  const title =
-    extractFrontMatterValue(markdown, "title") || "Pinyin to Hanzi";
   const description = extractSection(markdown, "# --description--", [
     "# --instructions--",
   ]);
@@ -195,7 +183,6 @@ const parseMarkdown = (markdown: string): ParsedMarkdown => {
     .filter((entry): entry is ParsedBlank => entry !== null);
 
   return {
-    title,
     description,
     instructions,
     sentence,
@@ -283,7 +270,7 @@ export function PinyinToHanzi() {
     <div className={styles.container}>
       <header className={styles.header}>
         <Typography variant="h4" component="h1">
-          {parsed.title || "Pinyin to Hanzi"}
+          Pinyin to Hanzi
         </Typography>
         <Typography variant="body1" color="text.secondary" component="p">
           Convert numbered or toned Pinyin into Chinese characters using the
