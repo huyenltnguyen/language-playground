@@ -156,7 +156,7 @@ const extractCodeBlocks = (input: string) => {
 
 const parseMarkdown = (markdown: string): ParsedMarkdown => {
   const title =
-    extractFrontMatterValue(markdown, "title") || "Pinyin to Chinese";
+    extractFrontMatterValue(markdown, "title") || "Pinyin to Hanzi";
   const description = extractSection(markdown, "# --description--", [
     "# --instructions--",
   ]);
@@ -283,7 +283,7 @@ export function PinyinToHanzi() {
     <div className={styles.container}>
       <header className={styles.header}>
         <Typography variant="h4" component="h1">
-          {parsed.title || "Pinyin to Chinese"}
+          {parsed.title || "Pinyin to Hanzi"}
         </Typography>
         <Typography variant="body1" color="text.secondary" component="p">
           Convert numbered or toned Pinyin into Chinese characters using the
