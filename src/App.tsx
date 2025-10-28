@@ -5,7 +5,7 @@ import { PinyinToneInput } from "./PinyinToneInput";
 import { SmartPinyinInput } from "./SmartPinyinInput";
 import { MarkdownToRuby } from "./MarkdownToRuby";
 import { ChineseFillInTheBlank } from "./ChineseFillInTheBlank";
-import { PinyinToHanzi } from "./PinyinToHanzi";
+import { PinyinToHanziInput } from "./PinyinToHanziInput";
 
 function Home() {
   return (
@@ -25,7 +25,7 @@ function Home() {
           <Link to="/chinese-fill-in-the-blank">Chinese Fill in the Blank</Link>
         </li>
         <li>
-          <Link to="/pinyin-to-hanzi">Pinyin to Hanzi</Link>
+          <Link to="/pinyin-to-hanzi-input">Pinyin to Hanzi Input</Link>
         </li>
       </ul>
     </main>
@@ -49,7 +49,7 @@ function App() {
           path="/chinese-fill-in-the-blank"
           element={<ChineseFillInTheBlank />}
         />
-        <Route path="/pinyin-to-hanzi" element={<PinyinToHanzi />} />
+        <Route path="/pinyin-to-hanzi-input" element={<PinyinToHanziInput />} />
       </Routes>
     </div>
   );

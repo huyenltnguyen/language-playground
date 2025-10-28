@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Box, Paper, TextField, Typography } from "@mui/material";
 import toPinyinTones from "pinyin-tone";
-import styles from "./PinyinToHanzi.module.css";
+import styles from "./PinyinToHanziInput.module.css";
 
 type ParsedBlank = {
   id: string;
@@ -190,7 +190,7 @@ const parseMarkdown = (markdown: string): ParsedMarkdown => {
   };
 };
 
-export function PinyinToHanzi() {
+export function PinyinToHanziInput() {
   const [markdown, setMarkdown] = useState(defaultMarkdown);
 
   const parsed = useMemo(() => parseMarkdown(markdown), [markdown]);
@@ -270,7 +270,7 @@ export function PinyinToHanzi() {
     <div className={styles.container}>
       <header className={styles.header}>
         <Typography variant="h4" component="h1">
-          Pinyin to Hanzi
+          Pinyin to Hanzi Input
         </Typography>
         <Typography variant="body1" color="text.secondary" component="p">
           Convert numbered or toned Pinyin into Chinese characters using the
