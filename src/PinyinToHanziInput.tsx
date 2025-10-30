@@ -31,15 +31,15 @@ dashedName: task-4
 inputType: pinyin-to-hanzi
 ---
 
-<!-- (Audio) Wang Hua: 请问 (qǐng wèn) -->
+<!-- (Audio) Example with neutral tone (tone 5) -->
 
 # --description--
 
-Wang Hua wants to politely ask someone's name. She uses a word before asking a question to show respect.
+Practice typing Pinyin with neutral tone. The word "ma" in "妈妈" has tone 1 for the first character and neutral tone (tone 5) for the second character.
 
 # --instructions--
 
-Listen to the audio and complete the sentence below.
+Type the Pinyin below. For neutral tone, you must type the number 5.
 
 # --fillInTheBlank--
 
@@ -49,10 +49,21 @@ Listen to the audio and complete the sentence below.
 
 ## --blanks--
 
-\`请问 (qǐng wèn)\`
+\`妈妈 (ma1 ma5)\`
 `;
 
 const blankPattern = /^(.+?)\s*\(([^)]+)\)\s*$/;
+
+// Helper function to check if a pinyin string has tone marks (diacritics)
+const hasToneMarks = (text: string): boolean => {
+  // Common Chinese pinyin tone marks on vowels
+  return /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/.test(text);
+};
+
+// Helper function to check if a string ends with a tone number (1-5)
+const endsWithToneNumber = (text: string): boolean => {
+  return /[1-5]$/.test(text);
+};
 
 const convertPinyinToHanzi = (input: string, blank: ParsedBlank) => {
   if (!input.trim()) return "";
@@ -72,14 +83,30 @@ const convertPinyinToHanzi = (input: string, blank: ParsedBlank) => {
       continue;
     }
 
+    // Get the first segment from remaining input
+    const firstSegment = remaining.split(/\s+/)[0];
+    
     // Convert remaining to toned pinyin and check for match
     const toned = toPinyinTones(remaining.toLowerCase());
     const tonedSegments = toned.split(/\s+/).filter(Boolean);
 
-    if (tonedSegments[0] === expectedPinyin) {
+    // Check if the toned pinyin matches the expected pinyin
+    const tonedMatches = tonedSegments[0] === expectedPinyin;
+    
+    if (tonedMatches) {
+      // For neutral tone (tone 5), we need to ensure the user explicitly typed a tone number
+      // If the expected pinyin has no tone marks and the input doesn't end with a tone number,
+      // we should NOT match yet (wait for the user to type the tone number)
+      const isNeutralTone = !hasToneMarks(expectedPinyin);
+      const userTypedToneNumber = endsWithToneNumber(firstSegment);
+      
+      if (isNeutralTone && !userTypedToneNumber) {
+        // Don't match yet - user needs to type the tone number
+        // Breaking here preserves the current input and allows user to continue typing
+        break;
+      }
+      
       result.push(expectedChar);
-      // Remove the first segment from remaining
-      const firstSegment = remaining.split(/\s+/)[0];
       remaining = remaining.slice(firstSegment.length).trim();
     } else {
       // No match - stop here and return what we have plus remaining
@@ -106,8 +133,37 @@ const convertPinyinToHanziFullMatch = (input: string, blank: ParsedBlank) => {
   const expectedWithSpaces = blank.pinyinParts.join(" ");
   const expectedNoSpaces = blank.pinyinParts.join("");
 
-  // Check for match
-  if (toned === expectedWithSpaces || toned === expectedNoSpaces) {
+  // Check for basic match
+  const matchesExpected = toned === expectedWithSpaces || toned === expectedNoSpaces;
+  
+  if (matchesExpected) {
+    // Additional check: if any expected pinyin is neutral tone, 
+    // ensure the corresponding input segment has a tone number
+    // Cache neutral tone checks to avoid repeated regex operations
+    const neutralToneIndices: number[] = [];
+    for (let i = 0; i < blank.pinyinParts.length; i++) {
+      if (!hasToneMarks(blank.pinyinParts[i])) {
+        neutralToneIndices.push(i);
+      }
+    }
+    
+    if (neutralToneIndices.length > 0) {
+      // Split the input by spaces and check each segment
+      const inputSegments = input.trim().split(/\s+/);
+      
+      // For each neutral tone position, verify the user typed a tone number
+      for (const index of neutralToneIndices) {
+        const inputSegment = inputSegments[index];
+        // Only enforce tone number check if we have enough segments
+        // If segments don't match expected count, the basic match would have failed
+        if (inputSegment && !endsWithToneNumber(inputSegment)) {
+          // User hasn't typed the tone number yet for this neutral tone syllable
+          return toned;
+        }
+      }
+    }
+    
+    // All checks passed - return the hanzi
     return blank.hanzi;
   }
 
