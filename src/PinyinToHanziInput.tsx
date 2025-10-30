@@ -93,16 +93,16 @@ const convertPinyinToHanzi = (input: string, blank: ParsedBlank) => {
     // Check if the toned pinyin matches the expected pinyin
     const tonedMatches = tonedSegments[0] === expectedPinyin;
     
-    // For neutral tone (tone 5), we need to ensure the user explicitly typed a tone number
-    // If the expected pinyin has no tone marks and the input doesn't end with a tone number,
-    // we should NOT match yet (wait for the user to type the tone number)
-    const isNeutralTone = !hasToneMarks(expectedPinyin);
-    const userTypedToneNumber = endsWithToneNumber(firstSegment);
-    
     if (tonedMatches) {
-      // If it's a neutral tone, only match if user typed a tone number
+      // For neutral tone (tone 5), we need to ensure the user explicitly typed a tone number
+      // If the expected pinyin has no tone marks and the input doesn't end with a tone number,
+      // we should NOT match yet (wait for the user to type the tone number)
+      const isNeutralTone = !hasToneMarks(expectedPinyin);
+      const userTypedToneNumber = endsWithToneNumber(firstSegment);
+      
       if (isNeutralTone && !userTypedToneNumber) {
         // Don't match yet - user needs to type the tone number
+        // Breaking here preserves the current input and allows user to continue typing
         break;
       }
       
@@ -139,25 +139,26 @@ const convertPinyinToHanziFullMatch = (input: string, blank: ParsedBlank) => {
   if (matchesExpected) {
     // Additional check: if any expected pinyin is neutral tone, 
     // ensure the corresponding input segment has a tone number
-    const hasNeutralTone = blank.pinyinParts.some(part => !hasToneMarks(part));
+    // Cache neutral tone checks to avoid repeated regex operations
+    const neutralToneIndices: number[] = [];
+    for (let i = 0; i < blank.pinyinParts.length; i++) {
+      if (!hasToneMarks(blank.pinyinParts[i])) {
+        neutralToneIndices.push(i);
+      }
+    }
     
-    if (hasNeutralTone) {
+    if (neutralToneIndices.length > 0) {
       // Split the input by spaces and check each segment
       const inputSegments = input.trim().split(/\s+/);
       
-      // For each expected pinyin part that's neutral tone, check if the corresponding
-      // input segment ends with a tone number
-      for (let i = 0; i < blank.pinyinParts.length; i++) {
-        const expectedPinyin = blank.pinyinParts[i];
-        const isNeutralTone = !hasToneMarks(expectedPinyin);
-        
-        if (isNeutralTone) {
-          // Check if the corresponding input segment (if exists) has a tone number
-          const inputSegment = inputSegments[i];
-          if (!inputSegment || !endsWithToneNumber(inputSegment)) {
-            // User hasn't typed the tone number yet for this neutral tone syllable
-            return toned;
-          }
+      // For each neutral tone position, verify the user typed a tone number
+      for (const index of neutralToneIndices) {
+        const inputSegment = inputSegments[index];
+        // Only enforce tone number check if we have enough segments
+        // If segments don't match expected count, the basic match would have failed
+        if (inputSegment && !endsWithToneNumber(inputSegment)) {
+          // User hasn't typed the tone number yet for this neutral tone syllable
+          return toned;
         }
       }
     }
