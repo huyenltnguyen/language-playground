@@ -48,8 +48,8 @@ importers:
         specifier: ^16.3.0
         version: 16.3.0
       pinyin-tone:
-        specifier: ^2.3.5
-        version: 2.3.5
+        specifier: 2.4.0
+        version: 2.4.0
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -4198,8 +4198,8 @@ packages:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
 
-  pinyin-tone@2.3.5:
-    resolution: {integrity: sha512-vlpl7V4T1MhwfDvxDxOW2fzpJTG681idHr5JsZecSEqeiT/pcpLua3is/qhXqiWf5cddbE7S81/4rwAqCMQr0Q==}
+  pinyin-tone@2.4.0:
+    resolution: {integrity: sha512-ATSA0WW81iOxTTePpY3FN2hXwh8OcDuO/xP5YwdkZLBGvZnkvhF1Nhbl03fS8CRtyvwvt1cBmzRnmHRR3p/7aw==}
 
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
@@ -10886,7 +10886,7 @@ snapshots:
 
   pify@2.3.0: {}
 
-  pinyin-tone@2.3.5: {}
+  pinyin-tone@2.4.0: {}
 
   pirates@4.0.7: {}
 
